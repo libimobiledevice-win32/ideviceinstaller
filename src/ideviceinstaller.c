@@ -985,14 +985,14 @@ run_again:
                        /* extract the CFBundleIdentifier from the package */
 
                        /* construct full filename to Info.plist */
-                       char *filename = (char*)malloc(strlen(appid)+10+1);
+                       char *filename = (char*)malloc(strlen(appid)+11+1);
                        strcpy(filename, appid);
                        strcat(filename, "/Info.plist");
 
                        struct stat st;
                        FILE *fp = NULL;
 
-                       if (stat(filename, &st) == -1 || (fp = fopen(filename, "r")) == NULL) {
+                       if (stat(filename, &st) == -1 || (fp = fopen(filename, "rb")) == NULL) {
                                fprintf(stderr, "ERROR: could not locate %s in app!\n", filename);
                                free(filename);
                                goto leave_cleanup;
